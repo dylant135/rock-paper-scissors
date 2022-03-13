@@ -13,13 +13,13 @@
 
 
         function computerPlay() {
-            let choice = ["rock", "paper", "scissors"];
+            let choice = ["rock", "paper", "scissors", "lizard", "spock"];
             let randomPlay = Math.floor(Math.random() * choice.length);
             return choice[randomPlay]
         }
 
         function playerPlay () {
-            let input = prompt("rock, paper, or scissors");
+            let input = prompt("rock, paper, scissors, lizard, or spock");
             input = input.toLowerCase();
             return input;
         }
@@ -39,6 +39,12 @@
                    } else if (computerSelection == "scissors") {
                        console.log("You win. Rock crushes scissors");
                        return playerScore++;
+                   } else if (computerSelection == "lizard") {
+                       console.log("You win. Rock crushes lizard");
+                       return playerScore++;
+                   } else if (computerSelection == "spock") {
+                       console.log("You lose. Spok vaperizes rock");
+                       return computerScore++;
                    }
                    break;
 
@@ -51,11 +57,17 @@
                     } else if (computerSelection == "scissors") {
                         console.log("You lose. Scissors cuts paper");
                         return computerScore++;
-                    }
+                    } else if (computerSelection == "lizard") {
+                       console.log("You lose. Lizard eats paper");
+                       return computerScore++;
+                    } else if (computerSelection == "spock") {
+                       console.log("You win. Paper disproves spock");
+                       return playerScore++;
+                   }
                     break;
 
                 case "scissors":
-                if (computerSelection == "rock") {
+                    if (computerSelection == "rock") {
                         console.log("You lose. Rock crushes scissors");
                         return computerScore++;
                     } else if (computerSelection == "paper") {
@@ -63,7 +75,48 @@
                         return playerScore++;
                     } else if (computerSelection == "scissors") {
                         console.log("Its a tie");
-                    }
+                    } else if (computerSelection == "lizard") {
+                       console.log("You win. Scissors decapitate lizard");
+                       return playerScore++;
+                    } else if (computerSelection == "spock") {
+                       console.log("You lose. Spok smashes scissors");
+                       return computerScore++;
+                   }
+                    break;
+
+                case "lizard":
+                    if (computerSelection == "rock") {
+                        console.log("You lose. Rock crushes lizard");
+                        return computerScore++;
+                    } else if (computerSelection == "paper") {
+                        console.log("You win. Lizard eats paper");
+                        return playerScore++;
+                    } else if (computerSelection == "scissors") {
+                        console.log("You lose. Scissors decapitates lizard");
+                        return computerScore++;
+                    } else if (computerSelection == "lizard") {
+                       console.log("Its a tie");
+                    } else if (computerSelection == "spock") {
+                       console.log("You Win. Lizard poisons spok");
+                       return playerScore++;
+                   }
+                    break;
+                case "spock":
+                    if (computerSelection == "rock") {
+                        console.log("You win. Spock vaparizes rock");
+                        return playerScore++;
+                    } else if (computerSelection == "paper") {
+                        console.log("You lose. Paper disproves spock");
+                        return computerScore++;
+                    } else if (computerSelection == "scissors") {
+                        console.log("You win. Spock smashes scissors");
+                        return playerScore++;
+                    } else if (computerSelection == "lizard") {
+                       console.log("You lose. Lizard poisons spock");
+                       return computerScore++;
+                    } else if (computerSelection == "spock") {
+                       console.log("Its a tie");
+                   }
                     break; 
            }
             }
