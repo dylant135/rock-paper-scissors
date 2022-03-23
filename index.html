@@ -4,12 +4,76 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
+    <h1>Rock, Paper, Scissors, Lizard, Spock</h1>
+    <h3>Rules:</h3>
+    <p>First to 5 wins.</p>
+    <p> Scissors cuts paper, paper covers rock, rock crushes lizard, lizard poisons Spock, 
+        Spock smashes scissors, scissors decapitates lizard, lizard eats paper, paper disproves Spock, 
+        Spock vaporizes rock, and as it always has, rock crushes scissors</p>
+
+    <div id="score">
+        <div id="player-score">You: 0</div>
+        <div id="computer-score">Computer: 0</div>
+    </div>
+
+    <h2 id="win-message"></h2>
+
+    <div id="container">
+        <button id="rock"><img src="rock.jpeg"></button>
+        <button id="paper"><img src="paper.png"></button>
+        <button id="scissors"><img src="scissors.png"></button>
+        <button id="lizard"><img src="lizard.jpeg"></button>
+        <button id="spock"><img src="spock.jpeg"></button>
+    </div>
+    <p><input id="refresh" type="button" value="Play Again" onClick="refresh(this)"></p>
+
     <script>
         let playerScore = 0;
         let computerScore = 0;
+        let playerPoints = document.querySelector("#player-score");
+        let computerPoints = document.querySelector("#computer-score");
+
+        let winMessage = document.querySelector("#win-message");
+
+        function refresh(){
+            window.location.reload("Play Again")
+         }
+
+
+        let rock = document.querySelector("#rock");
+        function rockbtn () {
+            playRound("rock", computerPlay);
+       }
+       rock.addEventListener('click', rockbtn);
+
+       let paper = document.querySelector("#paper");
+       function paperbtn () {
+           playRound("paper", computerPlay);
+       }
+       paper.addEventListener('click', paperbtn);
+
+       let scissors = document.querySelector("#scissors");
+       function scissorsbtn () {
+           playRound("scissors", computerPlay);
+       }
+       scissors.addEventListener('click', scissorsbtn);
+
+       let lizard = document.querySelector("#lizard");
+       function lizardbtn () {
+           playRound("lizard", computerPlay);
+       }
+       lizard.addEventListener('click', lizardbtn);
+       
+       let spock = document.querySelector("#spock");
+       function spockbtn () {
+           playRound("spock", computerPlay);
+       }
+       spock.addEventListener('click', spockbtn);
+
 
 
         function computerPlay() {
@@ -18,122 +82,129 @@
             return choice[randomPlay]
         }
 
-        function playerPlay () {
-            let input = prompt("rock, paper, scissors, lizard, or spock");
-            input = input.toLowerCase();
-            return input;
-        }
-
         
-        function playRound () {
-            let computerSelection = computerPlay();
-            let playerSelection = playerPlay();
+        function playRound (playerSelection, computerSelection) {
+            computerSelection = computerPlay();
 
            switch(playerSelection){
                case "rock":
                    if (computerSelection == "rock") {
-                       console.log("its a tie")
+                    winMessage.textContent = "its a tie";
                    } else if (computerSelection == "paper") {
-                       console.log("You lose. Paper covers rock");
-                       return computerScore++;
+                        winMessage.textContent = "You lose. Paper covers rock";
+                        computerScore += 1;
+                        computerPoints.textContent = "computer: " + computerScore;
                    } else if (computerSelection == "scissors") {
-                       console.log("You win. Rock crushes scissors");
-                       return playerScore++;
+                        winMessage.textContent = "You win. Rock crushes scissors";
+                        playerScore += 1;
+                        playerPoints.textContent = "You: " + playerScore;
                    } else if (computerSelection == "lizard") {
-                       console.log("You win. Rock crushes lizard");
-                       return playerScore++;
+                        winMessage.textContent = "You win. Rock crushes lizard";
+                        playerScore += 1;
+                        playerPoints.textContent = "You: " + playerScore;
                    } else if (computerSelection == "spock") {
-                       console.log("You lose. Spok vaperizes rock");
-                       return computerScore++;
+                        winMessage.textContent = "You lose. Spok vaperizes rock";
+                        computerScore += 1;
+                        computerPoints.textContent = "computer: " + computerScore;
                    }
                    break;
 
                 case "paper":
                     if (computerSelection == "rock") {
-                        console.log("You win. Paper covers rock");
-                        return playerScore++;
+                        winMessage.textContent = "You win. Paper covers rock";
+                        playerScore += 1;
+                        playerPoints.textContent = "You: " + playerScore;
                     } else if (computerSelection == "paper") {
-                        console.log("Its a tie");
+                        winMessage.textContent = "Its a tie";
                     } else if (computerSelection == "scissors") {
-                        console.log("You lose. Scissors cuts paper");
-                        return computerScore++;
+                        winMessage.textContent = "You lose. Scissors cuts paper";
+                        computerScore += 1;
+                        computerPoints.textContent = "computer: " + computerScore;
                     } else if (computerSelection == "lizard") {
-                       console.log("You lose. Lizard eats paper");
-                       return computerScore++;
+                        winMessage.textContent = "You lose. Lizard eats paper";
+                        computerScore += 1;
+                        computerPoints.textContent = "computer: " + computerScore;
                     } else if (computerSelection == "spock") {
-                       console.log("You win. Paper disproves spock");
-                       return playerScore++;
+                        winMessage.textContent = "You win. Paper disproves spock";
+                        playerScore += 1;
+                        playerPoints.textContent = "You: " + playerScore;
                    }
                     break;
 
                 case "scissors":
                     if (computerSelection == "rock") {
-                        console.log("You lose. Rock crushes scissors");
-                        return computerScore++;
+                        winMessage.textContent = "You lose. Rock crushes scissors";
+                        computerScore += 1;
+                        computerPoints.textContent = "computer: " + computerScore;
                     } else if (computerSelection == "paper") {
-                        console.log("You win. Scissors cut paper");
-                        return playerScore++;
+                        winMessage.textContent = "You win. Scissors cut paper";
+                        playerScore += 1;
+                        playerPoints.textContent = "You: " + playerScore;
                     } else if (computerSelection == "scissors") {
-                        console.log("Its a tie");
+                        winMessage.textContent = "Its a tie";
                     } else if (computerSelection == "lizard") {
-                       console.log("You win. Scissors decapitate lizard");
-                       return playerScore++;
+                        winMessage.textContent = "You win. Scissors decapitate lizard";
+                        playerScore += 1;
+                        playerPoints.textContent = "You: " + playerScore;
                     } else if (computerSelection == "spock") {
-                       console.log("You lose. Spok smashes scissors");
-                       return computerScore++;
+                        winMessage.textContent = "You lose. Spok smashes scissors";
+                        computerScore += 1;
+                        computerPoints.textContent = "computer: " + computerScore;
                    }
                     break;
 
                 case "lizard":
                     if (computerSelection == "rock") {
-                        console.log("You lose. Rock crushes lizard");
-                        return computerScore++;
+                        winMessage.textContent = "You lose. Rock crushes lizard";
+                        computerScore += 1;
+                        computerPoints.textContent = "computer: " + computerScore;
                     } else if (computerSelection == "paper") {
-                        console.log("You win. Lizard eats paper");
-                        return playerScore++;
+                        winMessage.textContent = "You win. Lizard eats paper";
+                        playerScore += 1;
+                        playerPoints.textContent = "You: " + playerScore;
                     } else if (computerSelection == "scissors") {
-                        console.log("You lose. Scissors decapitates lizard");
-                        return computerScore++;
+                        winMessage.textContent = "You lose. Scissors decapitates lizard";
+                        computerScore += 1;
+                        computerPoints.textContent = "computer: " + computerScore;
                     } else if (computerSelection == "lizard") {
-                       console.log("Its a tie");
+                        winMessage.textContent = "Its a tie";
                     } else if (computerSelection == "spock") {
-                       console.log("You Win. Lizard poisons spok");
-                       return playerScore++;
+                        winMessage.textContent = "You Win. Lizard poisons spok";
+                        playerScore += 1;
+                        playerPoints.textContent = "You: " + playerScore;
                    }
                     break;
                 case "spock":
                     if (computerSelection == "rock") {
-                        console.log("You win. Spock vaparizes rock");
-                        return playerScore++;
+                        winMessage.textContent = "You win. Spock vaparizes rock";
+                        playerScore += 1;
+                        playerPoints.textContent = "You: " + playerScore;
                     } else if (computerSelection == "paper") {
-                        console.log("You lose. Paper disproves spock");
-                        return computerScore++;
+                        winMessage.textContent = "You lose. Paper disproves spock";
+                        computerScore += 1;
+                        computerPoints.textContent = "computer: " + computerScore;
                     } else if (computerSelection == "scissors") {
-                        console.log("You win. Spock smashes scissors");
-                        return playerScore++;
+                        winMessage.textContent = "You win. Spock smashes scissors";
+                        playerScore += 1;
+                        playerPoints.textContent = "You: " + playerScore;
                     } else if (computerSelection == "lizard") {
-                       console.log("You lose. Lizard poisons spock");
-                       return computerScore++;
+                        winMessage.textContent = "You lose. Lizard poisons spock";
+                        computerScore += 1;
+                        computerPoints.textContent = "computer: " + computerScore;
                     } else if (computerSelection == "spock") {
-                       console.log("Its a tie");
+                        winMessage.textContent = "Its a tie";
                    }
                     break; 
            }
-            }
-
-        function game () {
-           while (playerScore < 5 || computerScore < 5) {
-                playRound();
-                console.log(playerScore, computerScore);
-
-                if (playerScore >= 5) {
-                    console.log("You win the game!");
-                } else if (computerScore >= 5) {
-                    console.log("You lose the game!");
-                }
-            }
+           if (playerScore == 5) {
+                winMessage.textContent = "You win the game!";
+                winMessage.style.color = "green";
+         }
+            if (computerScore == 5) {
+                winMessage.textContent = "You lose the game!";
+                winMessage.style.color = "red";
         }
-        game();
+            }
     </script>
 </body>
 </html>
